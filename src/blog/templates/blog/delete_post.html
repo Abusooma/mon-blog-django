@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title%}
+supprimer l'article
+{% endblock %}
+{% block content%}
+<form method="POST">
+    {% csrf_token %}
+    <p>Êtes vous sûre de vouloir supprimer <strong>{{post|upper}}</strong>?</p>
+    <input type="submit" value="Oui supprimer" class="btn btn-delete">
+    <a href="{% url 'home' %}" class="cancel">Annuler</a>
+</form>
+{% endblock %}

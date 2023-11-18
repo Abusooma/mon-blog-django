@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Page d'accueil
+{% endblock %}
+{% block content%}
+
+<h1>MON BLOG</h1>
+{% for post in posts%}
+<article>
+    <div class="post-title">
+        <h2 class="post-title">{{post.title|upper}}</h2>
+        {% if request.user.is_authenticated%}
+        <div>
+            <a href="{% url 'update' post.slug %}">Editer</a>
+            <a href="{% url 'delete' post.slug %}" class="last">Supprimer</a>
+        </div>
+        {% endif %}
+    </div>
+    <h5 class="post-author"> Publié par <i>{{post.get_author}}</i> le {{post.create_on}}</h5>
+    <p class="post-excerpt">{{post.content|truncatewords:50|safe}}</p>
+    <form action="{% url 'postview' post.slug %}">
+        <button class="btn btn-submit">Lire l'article</button>
+    </form>
+</article>
+{%endfor%}
+{% endblock%}
