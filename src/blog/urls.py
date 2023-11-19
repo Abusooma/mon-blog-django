@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import IndexView, PostView, CreatePostView, DeletePostView, UpdatePostView
 
+app_name = 'blog'
+
 urlpatterns = [
     path('', IndexView.as_view(), name='home'),
     path('post/<str:slug>', PostView.as_view(), name='postview'),

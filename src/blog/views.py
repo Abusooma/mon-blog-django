@@ -8,8 +8,6 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 from django import forms
 from .models import BlogPost
 
-app_name = 'blog'
-
 
 class IndexView(ListView):
     model = BlogPost
@@ -54,7 +52,7 @@ class UpdatePostView(UpdateView):
     template_name = 'blog/update_post.html'
 
     def get_success_url(self):
-        return reverse('postview', kwargs={'slug': self.object.slug})
+        return reverse('blog:postview', kwargs={'slug': self.object.slug})
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
